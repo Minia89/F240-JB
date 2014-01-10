@@ -34,6 +34,11 @@
 #define DEF_ALLOWED_MAX_FREQ_2 1242000
 #endif
 
+#define POLLING_DELAY 100
+
+unsigned int temp_threshold = 60;
+module_param(temp_threshold, int, 0755);
+
 static int enabled;
 static struct msm_thermal_data msm_thermal_info;
 static uint32_t limited_max_freq = MSM_CPUFREQ_NO_LIMIT;
@@ -135,7 +140,7 @@ static void check_temp(struct work_struct *work)
 			max_freq = DEF_ALLOWED_MAX_FREQ_2;
 	}
 #else
-	if (temp >= msm_thermal_info.limit_temp_degC) {
+	if (temp >= temp_threshold) {
 		if (limit_idx == limit_idx_low)
 			goto reschedule;
 
@@ -147,7 +152,7 @@ static void check_temp(struct work_struct *work)
 		max_freq = DEF_ALLOWED_MAX_FREQ;
 		pr_info("msm_thermal: tsens_temp %ld\n", temp); 
 #endif
-	} else if ( (temp < msm_thermal_info.limit_temp_degC -
+	} else if (temp < temp_threshold -
 		 msm_thermal_info.temp_hysteresis_degC)	) {
 		if (limit_idx == limit_idx_high)
 			goto reschedule;
@@ -173,8 +178,7 @@ static void check_temp(struct work_struct *work)
 
 reschedule:
 	if (enabled)
-		schedule_delayed_work(&check_temp_work,
-				msecs_to_jiffies(msm_thermal_info.poll_ms));
+		schedule_delayed_work(&check_temp_work, msecs_to_jiffies(POLLING_DELAY));
 }
 
 #if defined(CONFIG_MACH_APQ8064_GK_KR) || defined(CONFIG_MACH_APQ8064_GKATT)\
@@ -279,16 +283,6 @@ static int __devinit msm_thermal_dev_probe(struct platform_device *pdev)
 	if (ret)
 		goto fail;
 	WARN_ON(data.sensor_id >= TSENS_MAX_SENSORS);
-
-	key = "qcom,poll-ms";
-	ret = of_property_read_u32(node, key, &data.poll_ms);
-	if (ret)
-		goto fail;
-
-	key = "qcom,limit-temp";
-	ret = of_property_read_u32(node, key, &data.limit_temp_degC);
-	if (ret)
-		goto fail;
 
 	key = "qcom,temp-hysteresis";
 	ret = of_property_read_u32(node, key, &data.temp_hysteresis_degC);
