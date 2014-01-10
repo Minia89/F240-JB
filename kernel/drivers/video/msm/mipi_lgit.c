@@ -221,6 +221,8 @@ static void mipi_lgit_set_backlight_board(struct msm_fb_data_type *mfd)
 
 static int mipi_lgit_lcd_probe(struct platform_device *pdev)
 {
+    int rc;
+    
 	if (pdev->id == 0) {
 		mipi_lgit_pdata = pdev->dev.platform_data;
 		return 0;
