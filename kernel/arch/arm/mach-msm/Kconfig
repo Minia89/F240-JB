@@ -1643,12 +1643,6 @@ config GPU_OVERCLOCK
 	help
 	  GPU OC to 487.5Mhz
 
-config LOW_CPUCLOCKS
-        bool "Enable ultra low CPU clocks"
-        default n
-        help
-         Ultra low cpu frequencies enabled for CPU
-
 config MSM_AVS_HW
 	bool "Enable Adaptive Voltage Scaling (AVS)"
 	default n
