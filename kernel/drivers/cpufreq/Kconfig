@@ -157,11 +157,23 @@ config CPU_FREQ_DEFAULT_GOV_LAZY
         help
          Use the CPUFreq governor 'lazy' as default.
 
+config CPU_FREQ_DEFAULT_GOV_SMARTDROID
+        bool "smartdroid"
+        select CPU_FREQ_GOV_SMARTDROID
+        help
+        Governor smartdroid
+
 config CPU_FREQ_DEFAULT_GOV_INTELLIDEMAND
 	bool "intellidemand"
 	select CPU_FREQ_GOV_INTELLIDEMAND
         help
          Use the CPUFreq governor 'intellidemand' as default.
+
+config CPU_FREQ_DEFAULT_GOV_SMARTACTIVE
+        bool "smartactive"
+        select CPU_FREQ_GOV_SMARTACTIVE
+        help
+        Governor smartactive
 
 config CPU_FREQ_DEFAULT_GOV_SMARTACTIVEV2
 	bool "smartactivev2"
@@ -332,9 +344,21 @@ config CPU_FREQ_GOV_LAZY
 	tristate "'lazy' cpufreq governor"
 	depends on CPU_FREQ
 
+config CPU_FREQ_GOV_SMARTDROID
+        tristate "'smartdroid' cpufreq governor"
+        depends on CPU_FREQ
+        help
+        governor SMARTDROID
+
 config CPU_FREQ_GOV_INTELLIDEMAND
 	tristate "'intellidemand' cpufreq governor"
 	depends on CPU_FREQ
+
+config CPU_FREQ_GOV_SMARTACTIVE
+        tristate "'smartactive' cpufreq governor"
+        depends on CPU_FREQ
+        help
+        governor smartactive
 
 config CPU_FREQ_GOV_SMARTACTIVEV2
 	tristate "'smartactivev2' cpufreq governor"

@@ -13,7 +13,9 @@ obj-$(CONFIG_CPU_FREQ_GOV_CONSERVATIVE)	+= cpufreq_conservative.o
 obj-$(CONFIG_CPU_FREQ_GOV_INTERACTIVE)	+= cpufreq_interactive.o
 obj-$(CONFIG_CPU_FREQ_GOV_INTERACTIVEX)	+= cpufreq_interactivex.o
 obj-$(CONFIG_CPU_FREQ_GOV_LAZY)        += cpufreq_lazy.o
+obj-$(CONFIG_CPU_FREQ_GOV_SMARTDROID) += cpufreq_smartdroid.o
 obj-$(CONFIG_CPU_FREQ_GOV_INTELLIDEMAND)	+= cpufreq_intellidemand.o
+obj-$(CONFIG_CPU_FREQ_GOV_SMARTACTIVE)        += cpufreq_smartactive.o
 obj-$(CONFIG_CPU_FREQ_GOV_SMARTACTIVEV2)	+= cpufreq_smartactivev2.o
 obj-$(CONFIG_CPU_FREQ_GOV_HOTPLUG)        += cpufreq_hotplug.o
 obj-$(CONFIG_CPU_FREQ_GOV_SMARTMAX)        += cpufreq_smartmax.o
@@ -22,7 +24,6 @@ obj-$(CONFIG_CPU_FREQ_GOV_ASSWAX)  += cpufreq_asswax.o
 obj-$(CONFIG_CPU_FREQ_GOV_BADASS)  += cpufreq_badass.o
 obj-$(CONFIG_CPU_FREQ_GOV_DANCEDANCE)  += cpufreq_dancedance.o
 obj-$(CONFIG_CPU_FREQ_GOV_SMARTASSH3)  += cpufreq_smartassH3.o
-
 
 # CPUfreq cross-arch helpers
 obj-$(CONFIG_CPU_FREQ_TABLE)		+= freq_table.o
