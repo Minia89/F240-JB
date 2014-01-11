@@ -68,17 +68,6 @@ config CPU_FREQ_DEFAULT_GOV_BADASS
 	  governor. If unsure have a look at the help section of the
 	  driver. Fallback governor will be the performance governor.
 
-config CPU_FREQ_DEFAULT_GOV_DANCEDANCE
-  bool "dancedance"
-  select CPU_FREQ_GOV_DANCEDANCE
-  help
-
-config CPU_FREQ_DEFAULT_GOV_SMARTASSH3
-	bool "smartassH3"
-	select CPU_FREQ_GOV_SMARTASSH3
-	help
-	  Use the CPUFreq governor 'slp' as default.
-
 config CPU_FREQ_DEFAULT_GOV_PERFORMANCE
 	bool "performance"
 	select CPU_FREQ_GOV_PERFORMANCE
@@ -169,12 +158,6 @@ config CPU_FREQ_DEFAULT_GOV_INTELLIDEMAND
         help
          Use the CPUFreq governor 'intellidemand' as default.
 
-config CPU_FREQ_DEFAULT_GOV_SMARTACTIVE
-        bool "smartactive"
-        select CPU_FREQ_GOV_SMARTACTIVE
-        help
-        Governor smartactive
-
 config CPU_FREQ_DEFAULT_GOV_SMARTACTIVEV2
 	bool "smartactivev2"
 	select CPU_FREQ_GOV_SMARTACTIVEV2
@@ -226,16 +209,6 @@ config CPU_FREQ_GOV_BADASS
 	  To compile this driver as a module, choose M here: the
 	  module will be called cpufreq_badass.
 	  If in doubt, say N.
-
-config CPU_FREQ_GOV_DANCEDANCE
-  tristate "'dancedance' cpufreq governor"
-  depends on CPU_FREQ
-
-config CPU_FREQ_GOV_SMARTASSH3
-	tristate "'smartassH3' cpufreq governor"
-	depends on CPU_FREQ
-	help
-    		'smartassH3' - a "smart" governor
 
 config CPU_FREQ_GOV_PERFORMANCE
 	tristate "'performance' governor"
@@ -353,12 +326,6 @@ config CPU_FREQ_GOV_SMARTDROID
 config CPU_FREQ_GOV_INTELLIDEMAND
 	tristate "'intellidemand' cpufreq governor"
 	depends on CPU_FREQ
-
-config CPU_FREQ_GOV_SMARTACTIVE
-        tristate "'smartactive' cpufreq governor"
-        depends on CPU_FREQ
-        help
-        governor smartactive
 
 config CPU_FREQ_GOV_SMARTACTIVEV2
 	tristate "'smartactivev2' cpufreq governor"
